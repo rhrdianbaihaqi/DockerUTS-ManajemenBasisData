@@ -27,7 +27,7 @@ Karena proyek ini menggunakan Docker, Anda dapat menjalankannya dengan langkah-l
 
 1.  **Clone repositori ini:**
     ```bash
-    git clone [https://www.andarepository.com/](https://www.andarepository.com/)
+    git clone [https://github.com/rhrdianbaihaqi/DockerUTS-ManajemenBasisData.git]
     cd [nama-folder-proyek]
     ```
 
