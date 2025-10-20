@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+  postgres_Rahardian:
+    image: postgres:15
+    container_name: postgres_Muhammad-Rahardian-Baihaqi-023
+    restart: always
+    environment:
+      # diambil dari file .env
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+    ports:
+      # port yang kiri adalah port di localhost, kanan adalah port di container
+      - "22023:5432"
+    volumes:
+      # fungsinya supaya data ketika tidak hilang di-restart kontainer
+      - postgres_db_data:/var/lib/postgresql/data
+    networks:
+      - app_network
+
+  pgadmin_Rahardian:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin_Muhammad-Rahardian-Baihaqi-023
+    restart: always
+    environment:
+      # diambil dari file .env
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASS}
+    ports:
+      # port yang kiri di localhost, kanan adalah port di container pgAdmin
+      - "44023:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    networks:
+      - app_network
+    depends_on:
+      - postgres_Rahardian
+
+volumes:
+  postgres_db_data:
+    driver: local
+  pgadmin_data:
+    driver: local
+networks:
+  app_network:
+    driver: bridge
